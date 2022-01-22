@@ -22,8 +22,8 @@ while True:
         T = sensor.temperature()
         h = sensor.humidity()
         # print readings
-        print('temperature: %.2f' % T)
-        print('humidity: %.2f' % h)
+        print('temperature: %3.1f' % T)
+        print('humidity: %3.1f' % h)
     except OSError as e:
         # System-related error
         print('Failed to read sensor...')
