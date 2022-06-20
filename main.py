@@ -56,6 +56,4 @@ while True:
         sleep(rate)
     except OSError as e:
         # System-related error
-        print('Failed to read sensor...')    
-
-
+        print('Failed to read sensor...')
