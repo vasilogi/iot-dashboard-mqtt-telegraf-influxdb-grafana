@@ -1,2 +1,2 @@
-influxdb.conf
-.env
+/influxdb/config/influx-configs
+/influxdb/data/

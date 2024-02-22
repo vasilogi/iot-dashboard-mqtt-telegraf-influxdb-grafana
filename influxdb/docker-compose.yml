@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   influxdb:
@@ -7,22 +7,14 @@ services:
     ports:
       - 8086:8086
     volumes:
-      - influxdb_data:/var/lib/influxdb2
+      - ./data:/var/lib/influxdb2:rw
       # Optional: Mount a custom InfluxDB configuration file
-      # - ./influxdb.conf:/etc/influxdb2/influxdb.conf:ro
-    # command: influxd --config /etc/influxdb2/influxdb.conf:ro
-    environment:
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=admin
-      - DOCKER_INFLUXDB_INIT_PASSWORD=5up3rS3cr3t
-      - DOCKER_INFLUXDB_INIT_ORG=homeauto
-      - DOCKER_INFLUXDB_INIT_BUCKET=default
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=2wHOVtBTUdx1K6NIXcNZ4OKj43xoPcSi2XlqW1I6vjs=
+      - ./config:/etc/influxdb2:rw
+    env_file:
+      - .env
     networks:
-      - influxd_network
-
-volumes:
-  influxdb_data:
+      - influxdb_network
+    restart: unless-stopped
 
 networks:
-  influxd_network:
+  influxdb_network:
