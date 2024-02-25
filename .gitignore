@@ -1,2 +1,2 @@
-/influxdb/config/influx-configs
-/influxdb/data/
+/multi-container/config/influx-configs
+/multi-container/data/
