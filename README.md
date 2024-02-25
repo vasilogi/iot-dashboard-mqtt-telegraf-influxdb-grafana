@@ -12,10 +12,16 @@ https://github.com/micropython/micropython-lib/blob/master/micropython/umqtt.sim
 
 ## telegraf
 
+generate a config file
+
 docker run --rm telegraf telegraf config > telegraf.conf
 
 
 https://hub.docker.com/_/telegraf
+
+plugins
+
+https://github.com/influxdata/telegraf/tree/master/plugins
 
 
 Telegraf is an agent that is collecting, processing, aggregating and sending metrics of a machine

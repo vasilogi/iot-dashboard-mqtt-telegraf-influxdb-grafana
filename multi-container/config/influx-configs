@@ -1,0 +1,20 @@
+[default]
+  url = "http://localhost:8086"
+  token = "13dfffaaf8da2c2f83f90d9c462975ddab3978bf2e489f99ff983db39e726694"
+  org = "homeauto"
+  active = true
+# 
+# [eu-central]
+#   url = "https://eu-central-1-1.aws.cloud2.influxdata.com"
+#   token = "XXX"
+#   org = ""
+# 
+# [us-central]
+#   url = "https://us-central1-1.gcp.cloud2.influxdata.com"
+#   token = "XXX"
+#   org = ""
+# 
+# [us-west]
+#   url = "https://us-west-2-1.aws.cloud2.influxdata.com"
+#   token = "XXX"
+#   org = ""
