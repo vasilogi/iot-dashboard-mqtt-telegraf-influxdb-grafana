@@ -17,3 +17,10 @@ docker run --rm telegraf telegraf config > telegraf.conf
 
 https://hub.docker.com/_/telegraf
 
+
+Telegraf is an agent that is collecting, processing, aggregating and sending metrics of a machine
+that we want to monitor to various outputs like influxdb, graphite, kafka, etc.
+
+InfluxDB is an open-source time series database written in Go.
+
+Grafana is an open-source data visualization and monitoring suite.
