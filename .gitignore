@@ -1,2 +1,2 @@
-/multi-container/config/influx-configs
-/multi-container/data/
+.idea
+.venv

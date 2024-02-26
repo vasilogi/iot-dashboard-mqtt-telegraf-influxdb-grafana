@@ -105,6 +105,20 @@ files = [
 ]
 
 [[package]]
+name = "paho-mqtt"
+version = "2.0.0"
+description = "MQTT version 5.0/3.1.1 client class"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "paho_mqtt-2.0.0-py3-none-any.whl", hash = "sha256:2ef745073dfc9aa68bfec30d0b9b6f0304ea75182bae85a7c77a80cefce1eff5"},
+    {file = "paho_mqtt-2.0.0.tar.gz", hash = "sha256:13b205f29251e4f2c66a6c923c31fc4fd780561e03b2d775cff8e4f2915cf947"},
+]
+
+[package.extras]
+proxy = ["pysocks"]
+
+[[package]]
 name = "pyarrow"
 version = "15.0.0"
 description = "Python library for Apache Arrow"
@@ -238,4 +252,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "3.12"
-content-hash = "5f5907206c631385df25f77ded856fff8a46d8c32abd23b93f404d97db9a7570"
+content-hash = "228e3bf6b553f06edf9edf50b2cf72f90406b4a865b1505d3bfc9d9107f598e2"

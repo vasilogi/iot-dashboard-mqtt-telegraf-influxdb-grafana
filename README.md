@@ -30,3 +30,7 @@ that we want to monitor to various outputs like influxdb, graphite, kafka, etc.
 InfluxDB is an open-source time series database written in Go.
 
 Grafana is an open-source data visualization and monitoring suite.
+
+# MQTT
+
+https://github.com/eclipse/paho.mqtt.python?tab=readme-ov-file#getting-started
