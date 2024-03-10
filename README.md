@@ -34,3 +34,10 @@ Grafana is an open-source data visualization and monitoring suite.
 # MQTT
 
 https://github.com/eclipse/paho.mqtt.python?tab=readme-ov-file#getting-started
+
+## esp 32
+
+sudo apt-get install picocom
+https://www.youtube.com/watch?v=fmgQ8Dcg9uM
+https://docs.micropython.org/en/latest/esp32/quickref.html#installing-micropython
+https://micropython.org/download/ESP32_GENERIC/

@@ -7,26 +7,30 @@ from umqtt.simple import MQTTClient
 import network
 import ubinascii
 
+def connect_to_wifi(ssid, password):
+    wlan = network.WLAN(network.STA_IF)  # Create a WLAN object
+    wlan.active(True)  # Activate the WLAN interface
+
+    if not wlan.isconnected():  # Check if already connected
+        print("Connecting to WiFi...")
+        wlan.connect(ssid, password)  # Connect to the WiFi network
+
+        while not wlan.isconnected():  # Wait until connection is established
+            time.sleep(1)
+
+    print("Connected to WiFi:", ssid)
+    print("IP Address:", wlan.ifconfig()[0])
+
 
 # Network credentials
-ssid = 'Vodafone-14FD'
-password = '3p&uA_ZrUEXPcw489N%@'
+ssid = 'Vodafone-83EB_2.4GEXT'
+password = 'tbReNTRaJPE4JD6b'
 
-# connect to network
-station = network.WLAN(network.STA_IF)
-station.active(True)
-station.connect(ssid, password)
+connect_to_wifi(ssid, password)
 
-# check if the connection is successful
-while station.isconnected() == False:
-  pass
-
-print('Connection successful')
-print(station.ifconfig())
-
-# MQTT Broker
-broker_ip = 'broker.hivemq.com'
-topic_publish = b'temperature'
+# # MQTT Broker
+# broker_ip = 'broker.hivemq.com'
+# topic_publish = b'temperature'
 
 # the ESP unique ID needed to create an MQTT client
 client_id = ubinascii.hexlify(unique_id())
@@ -57,3 +61,4 @@ while True:
     except OSError as e:
         # System-related error
         print('Failed to read sensor...')
+
