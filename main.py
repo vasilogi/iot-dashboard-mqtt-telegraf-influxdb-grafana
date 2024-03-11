@@ -8,24 +8,30 @@ import network
 import ubinascii
 
 def connect_to_wifi(ssid, password):
-    wlan = network.WLAN(network.STA_IF)  # Create a WLAN object
-    wlan.active(True)  # Activate the WLAN interface
-
-    if not wlan.isconnected():  # Check if already connected
+    # Create a WLAN object
+    wlan = network.WLAN(network.STA_IF)
+    # Activate the WLAN interface
+    wlan.active(True)
+    
+    # Check if already connected
+    if not wlan.isconnected():  
         print("Connecting to WiFi...")
-        wlan.connect(ssid, password)  # Connect to the WiFi network
-
-        while not wlan.isconnected():  # Wait until connection is established
+        # Connect to the WiFi network
+        wlan.connect(ssid, password)
+        # Wait until connection is established
+        while not wlan.isconnected():
+            print("Attempting to reconnect to WiFi...")
             time.sleep(1)
 
-    print("Connected to WiFi:", ssid)
-    print("IP Address:", wlan.ifconfig()[0])
+    print(f"Connected to WiFi: {ssid}")
+    print(f"IP Address: {wlan.ifconfig()[0]}")
 
 
 # Network credentials
 ssid = 'Vodafone-83EB_2.4GEXT'
 password = 'tbReNTRaJPE4JD6b'
 
+# Connect to WiFi
 connect_to_wifi(ssid, password)
 
 # # MQTT Broker
@@ -44,21 +50,23 @@ rate = 2  # get data every 2 seconds
 sensor = dht.DHT11(Pin(4))
 
 # infinite loop
-
+print("Starting infinite loop... \n")
 while True:
     try:
-        # measure
+        # Start measuring
         sensor.measure()
-        # save readings
-        T = sensor.temperature()
-        h = sensor.humidity()
+        # Save readings
+        temperature = sensor.temperature()
+        humidity = sensor.humidity()
         # print readings
-        print('temperature:', T)
-        print('humidity:', h)
+        print('temperature:', temperature)
+        print('humidity:', humidity)
         print('timestamp:', time())
         # delay
         sleep(rate)
     except OSError as e:
+        # Handle specific errors
+        
         # System-related error
         print('Failed to read sensor...')
 
