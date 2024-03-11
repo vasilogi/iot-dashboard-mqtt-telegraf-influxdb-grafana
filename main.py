@@ -38,10 +38,6 @@ password = 'tbReNTRaJPE4JD6b'
 # Connect to WiFi
 connect_to_wifi(ssid, password)
 
-# # MQTT Broker
-# broker_ip = 'broker.hivemq.com'
-# topic_publish = b'temperature'
-
 # the ESP unique ID needed to create an MQTT client
 client_id = ubinascii.hexlify(unique_id())
 
@@ -55,6 +51,18 @@ sensor = dht.DHT11(Pin(4))
 
 # infinite loop
 print("Starting infinite loop... \n")
+
+
+# MQTT Broker
+broker_ip = 'broker.hivemq.com'  # Example MQTT broker IP address
+broker_port = 1883  # Example MQTT broker port
+topic_publish = b'hivemq/free/public/mqtt/kitchen_temperature'  # Example topic to publish
+
+# Create an MQTT client instance
+client = MQTTClient(client_id, broker_ip, port=broker_port)
+
+# Connect to the MQTT broker
+client.connect()
   
 while True:
     try:
@@ -68,13 +76,15 @@ while True:
         payload = {
             "id": client_id,
             "temperature": temperature,
-            "humidity": humidity,
             "timestamp": timestamp
             }
         
         message = json.dumps(payload)
+        print("Publishing message:", message)
         
-        print(message)
+        # Publish the message to the MQTT broker
+        client.publish(topic_publish, message)
+        
         # delay
         time.sleep(rate)
     except OSError as e:
