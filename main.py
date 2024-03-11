@@ -1,11 +1,12 @@
 # Read temperature and humidity data with an ESP32
 
 from machine import Pin, unique_id
-from time import sleep, time
+import time
 import dht
 from umqtt.simple import MQTTClient
 import network
 import ubinascii
+import json
 
 def connect_to_wifi(ssid, password):
     # Create a WLAN object
@@ -13,18 +14,21 @@ def connect_to_wifi(ssid, password):
     # Activate the WLAN interface
     wlan.active(True)
     
-    # Check if already connected
-    if not wlan.isconnected():  
-        print("Connecting to WiFi...")
-        # Connect to the WiFi network
-        wlan.connect(ssid, password)
-        # Wait until connection is established
-        while not wlan.isconnected():
-            print("Attempting to reconnect to WiFi...")
-            time.sleep(1)
+    try:
+        # Check if already connected
+        if not wlan.isconnected():  
+            print("Connecting to WiFi...")
+            # Connect to the WiFi network
+            wlan.connect(ssid, password)
+            # Wait until connection is established
+            while not wlan.isconnected():
+                print("Attempting to reconnect to WiFi...")
+                time.sleep(1)
 
-    print(f"Connected to WiFi: {ssid}")
-    print(f"IP Address: {wlan.ifconfig()[0]}")
+        print(f"Connected to WiFi: {ssid}")
+        print(f"IP Address: {wlan.ifconfig()[0]}")
+    except Exception as e:
+        print(f"Error occured while connecting to WiFi: {e}")
 
 
 # Network credentials
@@ -51,6 +55,7 @@ sensor = dht.DHT11(Pin(4))
 
 # infinite loop
 print("Starting infinite loop... \n")
+  
 while True:
     try:
         # Start measuring
@@ -58,12 +63,20 @@ while True:
         # Save readings
         temperature = sensor.temperature()
         humidity = sensor.humidity()
-        # print readings
-        print('temperature:', temperature)
-        print('humidity:', humidity)
-        print('timestamp:', time())
+        timestamp = time.time()
+        
+        payload = {
+            "id": client_id,
+            "temperature": temperature,
+            "humidity": humidity,
+            "timestamp": timestamp
+            }
+        
+        message = json.dumps(payload)
+        
+        print(message)
         # delay
-        sleep(rate)
+        time.sleep(rate)
     except OSError as e:
         # Handle specific errors
         # Handle specific errors
@@ -72,9 +85,9 @@ while True:
         elif e.errno == dht.DHT_ERROR_CHECKSUM:
             print("DHT checksum error.")
         else:
-            print("Failed to read sensor:", e)
+            print(f"Failed to read sensor: {e}")
         # System-related error
     except Exception as e:
         # Handle other exceptions
-        print("An unexpected error occurred:", e)
+        print(f"An unexpected error occurred: {e}")
 
