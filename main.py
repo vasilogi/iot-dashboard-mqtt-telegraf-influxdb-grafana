@@ -8,6 +8,12 @@ import network
 import ubinascii
 import json
 
+# Read configuration from JSON file
+def read_config(filename):
+    with open(filename, "r") as f:
+        config = json.load(f)
+    return config
+
 def connect_to_wifi(ssid, password):
     # Create a WLAN object
     wlan = network.WLAN(network.STA_IF)
@@ -54,8 +60,9 @@ print("Starting infinite loop... \n")
 
 
 # MQTT Broker
-broker_ip = 'broker.hivemq.com'  # Example MQTT broker IP address
-broker_port = 1883  # Example MQTT broker port
+broker_config = read_config("broker_config.json")  # Replace with your filename
+broker_ip = broker_config["broker"]  # Example MQTT broker IP address
+broker_port = broker_config["ports"]["tcp"]  # Example MQTT broker port
 topic_publish = b'hivemq/free/public/mqtt/kitchen_temperature'  # Example topic to publish
 
 # Create an MQTT client instance

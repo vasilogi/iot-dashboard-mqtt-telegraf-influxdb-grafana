@@ -85,3 +85,5 @@ Commands:
   rmdir  Forcefully remove a folder and all its children from the board.
   run    Run a script and print its output.
 
+## move file to ESP32
+ampy --port /dev/ttyUSB0 put broker_config.json
