@@ -66,7 +66,15 @@ while True:
         sleep(rate)
     except OSError as e:
         # Handle specific errors
-        
+        # Handle specific errors
+        if e.errno == dht.DHT_ERROR_TIMEOUT:
+            print("DHT sensor timed out.")
+        elif e.errno == dht.DHT_ERROR_CHECKSUM:
+            print("DHT checksum error.")
+        else:
+            print("Failed to read sensor:", e)
         # System-related error
-        print('Failed to read sensor...')
+    except Exception as e:
+        # Handle other exceptions
+        print("An unexpected error occurred:", e)
 
