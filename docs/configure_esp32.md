@@ -87,3 +87,9 @@ Commands:
 
 ## move file to ESP32
 ampy --port /dev/ttyUSB0 put broker_config.json
+
+> you should have Thonny closed
+
+ampy --port /dev/ttyUSB0 put src/
+ampy --port /dev/ttyUSB0 put config.json
+

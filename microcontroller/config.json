@@ -20,6 +20,7 @@
         }
     },
     "microcontroller": {
-      "reading_frequency": 5
+      "reading_frequency": 5,
+      "reading_pin": 4
     }
 }
