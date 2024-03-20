@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   influxdb:
     image: influxdb:2.7.5-alpine
