@@ -41,3 +41,12 @@ sudo apt-get install picocom
 https://www.youtube.com/watch?v=fmgQ8Dcg9uM
 https://docs.micropython.org/en/latest/esp32/quickref.html#installing-micropython
 https://micropython.org/download/ESP32_GENERIC/
+
+
+the ESP32 can retrieve the exact time and date with just an Internet connection.
+As soon as the ESP32 is completely turned off, it loses track of time. It is like an oven or microwave clock that
+displays 00:00 when there was a power failure. The most classical way is then to use an external RTC with a battery permanently connected
+
+Synchronizing the clock is very useful when the ESP32 wakes up from time to time to communicate with WEB services,
+and wants to date its packets with the right date. It can also be useful to have an alarm clock that executes a task at a specific time.
+
