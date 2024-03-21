@@ -1,52 +1,60 @@
-# LocalWeather-Reader
+# IoT Dashboard: MQTT, Telegraf, InfluxDB, Grafana
 
-## Wiring
+This project demonstrates how to monitor the temperature and humidity using an ESP32 microcontroller connected to
+a DHT11 sensor. The integrated Wi-Fi of ESP32 is utilized and the data is then transmitted via MQTT to the backend which
+is hosted on a Raspberry Pi. The backend system consists of a local MQTT broker, Telegraf, InfluxDB, and Grafana
+for visualization.
 
-In the image below it is explained how exactly the DHT11 sensor connects to ESP32.
+## Table of Contents
 
-![wiring_illustration](/Documentation/images/wiring_illustration.png)
+<!-- TOC -->
+* [IoT Dashboard: MQTT, Telegraf, InfluxDB, Grafana](#iot-dashboard-mqtt-telegraf-influxdb-grafana)
+  * [Table of Contents](#table-of-contents)
+  * [Hardware Requirements](#hardware-requirements)
+  * [Linux Development Environment](#linux-development-environment)
+    * [Pre-requisites](#pre-requisites)
+    * [Installation](#installation)
+<!-- TOC -->
 
-find the umqtt library here
+## Hardware Requirements
 
-https://github.com/micropython/micropython-lib/blob/master/micropython/umqtt.simple/umqtt/simple.py
+- [ESP32 System-on-a-Chip (SoC)](https://www.espressif.com/en/products/socs/esp32)
+- [DHT11 - Temperature and Humidity Sensor](https://components101.com/sensors/dht11-temperature-sensor)
 
-## telegraf
+## Linux Development Environment
 
-generate a config file
+> This project has been developed using Debian 12 (bookworm).
 
-docker run --rm telegraf telegraf config > telegraf.conf
+Here, the set-up procedure for Linux systems will be described. However, it wouldn't be that different for Mac
+or Windows OS.
 
+### Pre-requisites
 
-https://hub.docker.com/_/telegraf
+- [Python 3.12.2](https://www.python.org/downloads/release/python-3122/)
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+- [Docker](https://docs.docker.com/engine/install/)
+- [Pyenv](https://github.com/pyenv/pyenv) (optional)
 
-plugins
+> We recommend to use `pyenv` for installing and managing various Python version in simple way.
 
-https://github.com/influxdata/telegraf/tree/master/plugins
+### Installation
 
+1. Clone this repository to your local machine.
 
-Telegraf is an agent that is collecting, processing, aggregating and sending metrics of a machine
-that we want to monitor to various outputs like influxdb, graphite, kafka, etc.
+```shell
+git clone https://github.com/vasilogi/LocalWeather-Reader.git 
+```
 
-InfluxDB is an open-source time series database written in Go.
+2. Navigate inside the directory, containing the repository and create a Python virtual environment.
 
-Grafana is an open-source data visualization and monitoring suite.
+```shell
+python -m venv .venv
+```
 
-# MQTT
+3. Install the necessary requirements.
 
-https://github.com/eclipse/paho.mqtt.python?tab=readme-ov-file#getting-started
+```shell
+pip install -r requirements.txt
+```
 
-## esp 32
-
-sudo apt-get install picocom
-https://www.youtube.com/watch?v=fmgQ8Dcg9uM
-https://docs.micropython.org/en/latest/esp32/quickref.html#installing-micropython
-https://micropython.org/download/ESP32_GENERIC/
-
-
-the ESP32 can retrieve the exact time and date with just an Internet connection.
-As soon as the ESP32 is completely turned off, it loses track of time. It is like an oven or microwave clock that
-displays 00:00 when there was a power failure. The most classical way is then to use an external RTC with a battery permanently connected
-
-Synchronizing the clock is very useful when the ESP32 wakes up from time to time to communicate with WEB services,
-and wants to date its packets with the right date. It can also be useful to have an alarm clock that executes a task at a specific time.
 
