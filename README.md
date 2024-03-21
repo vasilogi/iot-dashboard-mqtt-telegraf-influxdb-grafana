@@ -14,6 +14,7 @@ for visualization.
   * [Linux Development Environment](#linux-development-environment)
     * [Pre-requisites](#pre-requisites)
     * [Installation](#installation)
+  * [ESP32 - DHT11 connectivity](#esp32---dht11-connectivity)
 <!-- TOC -->
 
 ## Hardware Requirements
@@ -57,4 +58,9 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
+## ESP32 - DHT11 connectivity
 
+Connect the DHT11 sensor to the ESP32 board. The connections typically include VCC, GND, and data pins. Advice the
+current configuration below:
+
+![wiring_illustration](./images/wiring_illustration.png)
