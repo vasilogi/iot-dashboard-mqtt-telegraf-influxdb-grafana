@@ -98,7 +98,7 @@ You can download the most recent MicroPython firmware **.bin file** to load onto
 
 In your Python virtual environment that you have installed, we have included the `esptool.py` package.
 You will use this open-source and platform-agnostic utility to communicate with the ROM bootloader in your ESP32 chip.
-Thus, first activate the virtual environment as explained above in the [installation instructions](#installation).
+Thus, first activate the virtual environment as explained above in the [installation instructions](#installation-).
 
 Then, erase the flash memory by running the following command:
 
