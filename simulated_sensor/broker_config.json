@@ -1,0 +1,11 @@
+{
+  "broker": "broker.hivemq.com",
+  "ports": {
+    "tcp": 1883,
+    "websocket": 8000,
+    "tls": {
+      "tcp": 8883,
+      "websocket": 8884
+    }
+  }
+}

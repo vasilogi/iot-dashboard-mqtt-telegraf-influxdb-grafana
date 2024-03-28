@@ -1,0 +1,26 @@
+{
+    "wifi": {
+      "ssid": "Vodafone-83EB_2.4GEXT",
+      "password": "tbReNTRaJPE4JD6b"
+    },
+    "mqtt":{
+        "broker": "broker.hivemq.com",
+        "ports": {
+          "tcp": 1883,
+          "websocket": 8000,
+          "tls": {
+            "tcp": 8883,
+            "websocket": 8884
+          }
+        },
+        "topics": {
+          "base_topic": "hivemq/free/public/mqtt/home/kitchen/",
+          "temperature": "temperature",
+          "humidity": "humidity"
+        }
+    },
+    "microcontroller": {
+      "reading_frequency": 5,
+      "reading_pin": 4
+    }
+}
