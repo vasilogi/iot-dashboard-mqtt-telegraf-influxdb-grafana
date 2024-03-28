@@ -14,8 +14,16 @@ for visualization.
   * [Linux Development Environment](#linux-development-environment)
     * [Pre-requisites](#pre-requisites)
     * [Installation](#installation)
-  * [ESP32 - DHT11 wiring](#esp32---dht11-wiring)
-  * [Connect to the ESP32](#connect-to-the-esp32)
+      * [1. Clone this repository to your local machine.](#1-clone-this-repository-to-your-local-machine)
+      * [2. Navigate inside the directory, containing the repository and create a Python virtual environment.](#2-navigate-inside-the-directory-containing-the-repository-and-create-a-python-virtual-environment)
+      * [4. Activate the virtual environment:](#4-activate-the-virtual-environment)
+      * [5. Install the necessary requirements.](#5-install-the-necessary-requirements)
+  * [Hardware wiring](#hardware-wiring)
+  * [Getting connected with the ESP32](#getting-connected-with-the-esp32)
+    * [Powering the board](#powering-the-board)
+    * [Downloading the MicroPython firmware](#downloading-the-micropython-firmware)
+    * [Flashing the MicroPython firmware into the ESP32](#flashing-the-micropython-firmware-into-the-esp32)
+    * [Loading the source code into the EPS32](#loading-the-source-code-into-the-eps32)
 <!-- TOC -->
 
 ## Hardware Requirements
@@ -41,25 +49,25 @@ or Windows OS.
 
 ### Installation
 
-1. Clone this repository to your local machine.
+#### 1. Clone this repository to your local machine.
 
 ```shell
 git clone https://github.com/vasilogi/LocalWeather-Reader.git 
 ```
 
-2. Navigate inside the directory, containing the repository and create a Python virtual environment.
+#### 2. Navigate inside the directory, containing the repository and create a Python virtual environment.
 
 ```shell
 python -m venv .venv
 ```
 
-3. Activate the virtual environment:
+#### 4. Activate the virtual environment:
 
 ```shell
 source .vevn/bin/activate
 ```
 
-4. Install the necessary requirements.
+#### 5. Install the necessary requirements.
 
 ```shell
 pip install -r requirements.txt
@@ -149,7 +157,50 @@ Hard resetting via RTS pin...
 
 Super! You have successfully flashed the MicroPython firmware onto your ESP32!
 
+### Loading the source code into the EPS32
 
+Now you can transfer your MicroPython code to the ESP32 using `adafruit-ampy`. `Ampy` is a tool to control MicroPython
+boards over a serial connection. Using it, you can manipulate files on the board's filesystem and even run scripts.
+Assuming that you have navigated within the `microcontroller` directory from the root of this project, you can view the
+help manual of `ampy` by running:
+
+```shell
+ampy --help
+```
+
+Let's first list the contents of the root of the filesystem on the board by running:
+
+```shell
+ampy --port /dev/ttyUSB0 ls
+```
+
+Most probably, you should be seeing just a `boot.py` file.
+
+Therefore, let's move our source code onto the ESP32 by running:
+
+```shell
+ampy --port /dev/ttyUSB0 put *.py
+ampy --port /dev/ttyUSB0 put config.json 
+ampy --port /dev/ttyUSB0 put src/
+```
+
+> In case you are using some IDE that is connected already with board, e.g. [Thonny](https://thonny.org/)
+> you will need to close it in order to successfully transfer the code.
+
+You can verify the transfer by running:
+
+```shell
+ampy --port /dev/ttyUSB0 ls
+```
+
+and it should look like below:
+
+```shell
+/boot.py
+/config.json
+/main.py
+/src
+```
 
 
 
