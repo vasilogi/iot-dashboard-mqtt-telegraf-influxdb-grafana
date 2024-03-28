@@ -59,7 +59,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-## ESP32 - DHT11 wiring
+## Hardware wiring
 
 Connect the DHT11 sensor to the ESP32 board. The connections typically include VCC, GND, and data pins. Advice the
 current configuration below:
@@ -67,4 +67,15 @@ current configuration below:
 ![wiring_illustration](./images/wiring_illustration.png)
 
 
-## Connect to the ESP32
+## Getting connected with the ESP32
+
+### Powering the board
+
+Your board has a micro USB connector on it, and it is powered through this when connected to your development machine.
+Therefore, simply connect a micro USB cable to it.
+
+### Download the MicroPython firmware
+
+You can download the most recent MicroPython firmware **.bin file** to load onto your ESP32 device from the
+[MicroPython downloads page](https://micropython.org/download/ESP32_GENERIC/).
+

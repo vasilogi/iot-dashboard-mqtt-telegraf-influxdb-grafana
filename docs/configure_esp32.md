@@ -54,7 +54,7 @@ Hard resetting via RTS pin...
 
 communicate with the board
 
-mpy --help
+ampy --help
 Usage: ampy [OPTIONS] COMMAND [ARGS]...
 
   ampy - Adafruit MicroPython Tool
