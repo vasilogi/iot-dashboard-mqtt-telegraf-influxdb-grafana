@@ -53,7 +53,13 @@ git clone https://github.com/vasilogi/LocalWeather-Reader.git
 python -m venv .venv
 ```
 
-3. Install the necessary requirements.
+3. Activate the virtual environment:
+
+```shell
+source .vevn/bin/activate
+```
+
+4. Install the necessary requirements.
 
 ```shell
 pip install -r requirements.txt
@@ -74,8 +80,76 @@ current configuration below:
 Your board has a micro USB connector on it, and it is powered through this when connected to your development machine.
 Therefore, simply connect a micro USB cable to it.
 
-### Download the MicroPython firmware
+### Downloading the MicroPython firmware
 
 You can download the most recent MicroPython firmware **.bin file** to load onto your ESP32 device from the
-[MicroPython downloads page](https://micropython.org/download/ESP32_GENERIC/).
+[MicroPython downloads page](https://micropython.org/download/ESP32_GENERIC/). In this project, we are going to use the
+[v.1.22.2](./esp32_firmware/ESP32_GENERIC-20240222-v1.22.2.bin).
+
+### Flashing the MicroPython firmware into the ESP32
+
+In your Python virtual environment that you have installed, we have included the `esptool.py` package.
+You will use this open-source and platform-agnostic utility to communicate with the ROM bootloader in your ESP32 chip.
+Thus, first activate the virtual environment as explained above in the [installation instructions](#installation).
+
+Then, erase the flash memory by running the following command:
+
+```shell
+esptool.py --chip esp32 --port /dev/ttyUSB0 erase_flash
+```
+
+Upon success, you should be expecting a message like this:
+
+```shell
+esptool.py v4.7.0
+Serial port /dev/ttyUSB0
+Connecting.......
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 7c:9e:bd:61:5f:48
+Uploading stub...
+Running stub...
+Stub running...
+Erasing flash (this may take a while)...
+Chip erase completed successfully in 5.8s
+Hard resetting via RTS pin...
+```
+
+Now, you are ready to flash the MicroPython firmware onto the ESP32 by running:
+
+```shell
+esptool.py --chip esp32 --port /dev/ttyUSB0 --baud 460800 write_flash -z 0x1000 ./esp32_firmware/ESP32_GENERIC-20240222-v1.22.2.bin
+```
+
+You should be seeing in your terminal a similar to this message:
+
+```shell
+esptool.py v4.7.0
+Serial port /dev/ttyUSB0
+Connecting....
+Chip is ESP32-D0WDQ6 (revision v1.0)
+Features: WiFi, BT, Dual Core, 240MHz, VRef calibration in efuse, Coding Scheme None
+Crystal is 40MHz
+MAC: 7c:9e:bd:61:5f:48
+Uploading stub...
+Running stub...
+Stub running...
+Changing baud rate to 460800
+Changed.
+Configuring flash size...
+Flash will be erased from 0x00001000 to 0x001a9fff...
+Compressed 1737776 bytes to 1143554...
+Wrote 1737776 bytes (1143554 compressed) at 0x00001000 in 25.8 seconds (effective 539.4 kbit/s)...
+Hash of data verified.
+
+Leaving...
+Hard resetting via RTS pin...
+```
+
+Super! You have successfully flashed the MicroPython firmware onto your ESP32!
+
+
+
+
 
