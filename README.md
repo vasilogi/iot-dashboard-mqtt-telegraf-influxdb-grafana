@@ -202,5 +202,7 @@ and it should look like below:
 /src
 ```
 
+> It might be a good practice to plug out and in again the power from your ESP32.
+
 
 
