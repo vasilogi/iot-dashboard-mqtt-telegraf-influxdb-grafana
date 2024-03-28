@@ -3,7 +3,7 @@
 This project demonstrates how to monitor the temperature and humidity using an ESP32 microcontroller connected to
 a DHT11 sensor. The integrated Wi-Fi of ESP32 is utilized and the data is then transmitted via MQTT to the backend which
 is hosted on a Raspberry Pi. The backend system consists of a local MQTT broker, Telegraf, InfluxDB, and Grafana
-for visualization.
+for visualization. 🌡️📈
 
 ## Table of Contents
 
@@ -31,7 +31,7 @@ for visualization.
 - [ESP32 System-on-a-Chip (SoC)](https://www.espressif.com/en/products/socs/esp32)
 - [DHT11 - Temperature and Humidity Sensor](https://components101.com/sensors/dht11-temperature-sensor)
 
-## Linux Development Environment
+## Linux Development Environment 🐧
 
 > This project has been developed using Debian 12 (bookworm).
 
@@ -47,7 +47,7 @@ or Windows OS.
 
 > We recommend to use `pyenv` for installing and managing various Python version in simple way.
 
-### Installation
+### Installation 📦
 
 #### 1. Clone this repository to your local machine.
 
@@ -73,7 +73,7 @@ source .vevn/bin/activate
 pip install -r requirements.txt
 ```
 
-## Hardware wiring
+## Hardware wiring 🧩
 
 Connect the DHT11 sensor to the ESP32 board. The connections typically include VCC, GND, and data pins. Advice the
 current configuration below:
@@ -81,20 +81,20 @@ current configuration below:
 ![wiring_illustration](./images/wiring_illustration.png)
 
 
-## Getting connected with the ESP32
+## Getting connected with the ESP32 🔄
 
-### Powering the board
+### Powering the board 🔌
 
 Your board has a micro USB connector on it, and it is powered through this when connected to your development machine.
 Therefore, simply connect a micro USB cable to it.
 
-### Downloading the MicroPython firmware
+### Downloading the MicroPython firmware 📥
 
 You can download the most recent MicroPython firmware **.bin file** to load onto your ESP32 device from the
 [MicroPython downloads page](https://micropython.org/download/ESP32_GENERIC/). In this project, we are going to use the
 [v.1.22.2](./esp32_firmware/ESP32_GENERIC-20240222-v1.22.2.bin).
 
-### Flashing the MicroPython firmware into the ESP32
+### Flashing the MicroPython firmware into the ESP32 📲
 
 In your Python virtual environment that you have installed, we have included the `esptool.py` package.
 You will use this open-source and platform-agnostic utility to communicate with the ROM bootloader in your ESP32 chip.
@@ -155,9 +155,9 @@ Leaving...
 Hard resetting via RTS pin...
 ```
 
-Super! You have successfully flashed the MicroPython firmware onto your ESP32!
+Super! You have successfully flashed the MicroPython firmware onto your ESP32! ✨
 
-### Loading the source code into the EPS32
+### Loading the source code into the EPS32 📥
 
 Now you can transfer your MicroPython code to the ESP32 using `adafruit-ampy`. `Ampy` is a tool to control MicroPython
 boards over a serial connection. Using it, you can manipulate files on the board's filesystem and even run scripts.
