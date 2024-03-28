@@ -10,23 +10,23 @@ for visualization. 🌡️📈
 <!-- TOC -->
 * [IoT Dashboard: MQTT, Telegraf, InfluxDB, Grafana](#iot-dashboard-mqtt-telegraf-influxdb-grafana)
   * [Table of Contents](#table-of-contents)
-  * [Hardware Requirements](#hardware-requirements)
-  * [Linux Development Environment](#linux-development-environment)
+  * [Hardware Requirements 🛠️](#hardware-requirements-)
+  * [Linux Development Environment 🐧](#linux-development-environment-)
     * [Pre-requisites](#pre-requisites)
-    * [Installation](#installation)
+    * [Installation 📦](#installation-)
       * [1. Clone this repository to your local machine.](#1-clone-this-repository-to-your-local-machine)
       * [2. Navigate inside the directory, containing the repository and create a Python virtual environment.](#2-navigate-inside-the-directory-containing-the-repository-and-create-a-python-virtual-environment)
       * [4. Activate the virtual environment:](#4-activate-the-virtual-environment)
       * [5. Install the necessary requirements.](#5-install-the-necessary-requirements)
-  * [Hardware wiring](#hardware-wiring)
-  * [Getting connected with the ESP32](#getting-connected-with-the-esp32)
-    * [Powering the board](#powering-the-board)
-    * [Downloading the MicroPython firmware](#downloading-the-micropython-firmware)
-    * [Flashing the MicroPython firmware into the ESP32](#flashing-the-micropython-firmware-into-the-esp32)
-    * [Loading the source code into the EPS32](#loading-the-source-code-into-the-eps32)
+  * [Hardware wiring 🧩](#hardware-wiring-)
+  * [Getting connected with the ESP32 🔄](#getting-connected-with-the-esp32-)
+    * [Powering the board 🔌](#powering-the-board-)
+    * [Downloading the MicroPython firmware 📥](#downloading-the-micropython-firmware-)
+    * [Flashing the MicroPython firmware into the ESP32 📲](#flashing-the-micropython-firmware-into-the-esp32-)
+    * [Loading the source code into the EPS32 📥](#loading-the-source-code-into-the-eps32-)
 <!-- TOC -->
 
-## Hardware Requirements
+## Hardware Requirements 🛠️
 
 - [ESP32 System-on-a-Chip (SoC)](https://www.espressif.com/en/products/socs/esp32)
 - [DHT11 - Temperature and Humidity Sensor](https://components101.com/sensors/dht11-temperature-sensor)
