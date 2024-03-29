@@ -2,8 +2,8 @@
 
 This project demonstrates how to monitor the temperature and humidity using an ESP32 microcontroller connected to
 a DHT11 sensor. The integrated Wi-Fi of ESP32 is utilized and the data is then transmitted via MQTT to the backend which
-is hosted on a Raspberry Pi. The backend system consists of a local MQTT broker, Telegraf, InfluxDB, and Grafana
-for visualization. 🌡️📈
+can be hosted on a Raspberry Pi, your personal computer or any cloud service. The backend monitoring stack consists of a local mosquitto MQTT broker, Telegraf,
+InfluxDB, and Grafana for visualization. 🌡️📈
 
 ## Table of Contents
 
@@ -25,10 +25,10 @@ for visualization. 🌡️📈
       * [Downloading the MicroPython firmware 📥](#downloading-the-micropython-firmware-)
       * [Flashing the MicroPython firmware into the ESP32 📲](#flashing-the-micropython-firmware-into-the-esp32-)
       * [Loading the source code into the EPS32 📥](#loading-the-source-code-into-the-eps32-)
-  * [Set up the monitoring stack 📊](#set-up-the-monitoring-stack--)
-    * [Parse MQTT Data to Telegraf, Store with InfluxDB and Visualise with Grafana](#parse-mqtt-data-to-telegraf-store-with-influxdb-and-visualise-with-grafana)
+  * [Set up the monitoring stack (Mosquitto, Telegraf, InfluxDB, Grafana) 📊](#set-up-the-monitoring-stack-mosquitto-telegraf-influxdb-grafana-)
     * [Prerequisites](#prerequisites)
     * [Building images and spinning up containers](#building-images-and-spinning-up-containers)
+    * [Enable the MQTT communication](#enable-the-mqtt-communication)
     * [Exploring Data in InfluxDB Data Explorer](#exploring-data-in-influxdb-data-explorer)
     * [Configuring InfluxDB Data Source in Grafana 🚀](#configuring-influxdb-data-source-in-grafana--)
     * [Visualise time-series data using Grafana 📊](#visualise-time-series-data-using-grafana--)
@@ -215,9 +215,7 @@ and it should look like below:
 
 > It might be a good practice to plug out and in again the power from your ESP32.
 
-## Set up the monitoring stack 📊 
-
-### Parse MQTT Data to Telegraf, Store with InfluxDB and Visualise with Grafana
+## Set up the monitoring stack (Mosquitto, Telegraf, InfluxDB, Grafana) 📊
 
 In the [backend directory](./backend), there is a Docker Compose configuration file for setting up a monitoring stack
 using [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://www.influxdata.com/),
@@ -254,11 +252,31 @@ docker ps
 You should be seeing something similar to this:
 
 ```shell
-CONTAINER ID   IMAGE                    COMMAND                  CREATED      STATUS       PORTS                                                                     NAMES
-f51840a5a61a   grafana/grafana:10.2.4   "/run.sh"                7 days ago   Up 3 hours   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp                                 grafana
-e330ba3b16b9   telegraf:1.29.5-alpine   "/entrypoint.sh tele…"   7 days ago   Up 3 hours   8092/udp, 8125/udp, 8094/tcp, 0.0.0.0:8125->8125/tcp, :::8125->8125/tcp   telegraf
-fff28833f558   influxdb:2.7.5-alpine    "/entrypoint.sh infl…"   7 days ago   Up 3 hours   0.0.0.0:8086->8086/tcp, :::8086->8086/tcp                                 influxdb
+CONTAINER ID   IMAGE                      COMMAND                  CREATED         STATUS         PORTS                                                                     NAMES
+80c5c3a71d2e   grafana/grafana:10.2.4     "/run.sh"                8 minutes ago   Up 8 minutes   0.0.0.0:3000->3000/tcp, :::3000->3000/tcp                                 grafana
+bf78de501cca   telegraf:1.29.5-alpine     "/entrypoint.sh tele…"   8 minutes ago   Up 8 minutes   8092/udp, 8125/udp, 8094/tcp, 0.0.0.0:8125->8125/tcp, :::8125->8125/tcp   telegraf
+0346a8d23fc5   eclipse-mosquitto:2.0.18   "/docker-entrypoint.…"   8 minutes ago   Up 8 minutes   0.0.0.0:1883->1883/tcp, :::1883->1883/tcp                                 mosquitto
+a76092ad5db3   influxdb:2.7.5-alpine      "/entrypoint.sh infl…"   8 minutes ago   Up 8 minutes   0.0.0.0:8086->8086/tcp, :::8086->8086/tcp                                 influxdb
 ```
+
+### Enable the MQTT communication
+
+On the machine that hosts the monitoring stack, check if your firewall is blocking access to port 1883
+(the default MQTT port). You might need to temporarily disable the firewall for testing or add a rule to allow
+connections on port 1883. Here's a general command (replace ufw with your specific firewall if different):
+
+```shell
+sudo ufw allow 1883/tcp
+```
+
+Additionally, you need to know the IP of this host machine. You can get it by running the following command:
+
+```shell
+hostname -I | awk '{print $1}'
+```
+
+Therefore, add this IP address as the IP of the broker in the microcontroller's
+[configuration file](./microcontroller/config.json).
 
 ### Exploring Data in InfluxDB Data Explorer
 

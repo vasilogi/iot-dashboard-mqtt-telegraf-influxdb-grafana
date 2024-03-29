@@ -1,4 +1,17 @@
 services:
+  mosquitto:
+    image: eclipse-mosquitto:2.0.18
+    container_name: mosquitto
+    ports:
+      - 1883:1883
+    networks:
+      - influxdb_network
+    volumes:
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro  # Read-only config file
+      - mosquitto_data:/mosquitto/data  # Persistent data volume
+      - mosquitto_log:/mosquitto/log  # Persistent log volume
+    restart: unless-stopped
+
   influxdb:
     image: influxdb:2.7.5-alpine
     container_name: influxdb
@@ -48,6 +61,8 @@ networks:
   influxdb_network:
 
 volumes:
+  mosquitto_data:
+  mosquitto_log:
   influxdb_data:
   influxdb_config:
   grafana_storage:
