@@ -221,7 +221,7 @@ and it should look like below:
 
 In the [backend directory](./backend), there is a Docker Compose configuration file for setting up a monitoring stack
 using [Telegraf](https://www.influxdata.com/time-series-platform/telegraf/), [InfluxDB](https://www.influxdata.com/),
-and [Grafana](https://grafana.com/). This document provides instructions on how to build the images,
+and [Grafana](https://grafana.com/). In this section, we provide instructions on how to build the images,
 spin up the containers, configure data sources, and create dashboards.
 
 > You can deploy this monitoring stack on-premise, for example, on a personal computer or a Raspberry Pi, or on the cloud.
