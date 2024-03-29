@@ -1,2 +1,4 @@
 .idea
 .venv
+./docs/Pyenv_installation.md
+./docs/README_dev.md
