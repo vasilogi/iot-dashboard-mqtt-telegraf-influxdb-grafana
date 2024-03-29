@@ -4,7 +4,7 @@
       "password": "tbReNTRaJPE4JD6b"
     },
     "mqtt":{
-        "broker": "broker.hivemq.com",
+        "broker": "192.168.0.179",
         "ports": {
           "tcp": 1883,
           "websocket": 8000,
@@ -14,7 +14,7 @@
           }
         },
         "topics": {
-          "base_topic": "hivemq/free/public/mqtt/home/kitchen/",
+          "base_topic": "Greece/Athens/Lycabettus/home/kitchen/",
           "temperature": "temperature",
           "humidity": "humidity"
         }
