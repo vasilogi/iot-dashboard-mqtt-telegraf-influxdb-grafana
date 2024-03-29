@@ -10,6 +10,7 @@ InfluxDB, and Grafana for visualization. 🌡️📈
 <!-- TOC -->
 * [IoT Dashboard: MQTT, Telegraf, InfluxDB, Grafana](#iot-dashboard-mqtt-telegraf-influxdb-grafana)
   * [Table of Contents](#table-of-contents)
+  * [Architecture](#architecture)
   * [Hardware Requirements 🛠️](#hardware-requirements-)
   * [Set up a Linux Development Environment 🐧](#set-up-a-linux-development-environment-)
     * [Pre-requisites](#pre-requisites)
@@ -33,6 +34,10 @@ InfluxDB, and Grafana for visualization. 🌡️📈
     * [Configuring InfluxDB Data Source in Grafana 🚀](#configuring-influxdb-data-source-in-grafana--)
     * [Visualise time-series data using Grafana 📊](#visualise-time-series-data-using-grafana--)
 <!-- TOC -->
+
+## Architecture
+
+![architecture.png](./images/architecture.png)
 
 ## Hardware Requirements 🛠️
 
