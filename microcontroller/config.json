@@ -1,10 +1,10 @@
 {
     "wifi": {
-      "ssid": "Vodafone-83EB_2.4GEXT",
-      "password": "tbReNTRaJPE4JD6b"
+      "ssid": "your_wifi_name",
+      "password": "your_wifi_password"
     },
     "mqtt":{
-        "broker": "192.168.0.179",
+        "broker": "192.168.0.179_change_it",
         "ports": {
           "tcp": 1883,
           "websocket": 8000,

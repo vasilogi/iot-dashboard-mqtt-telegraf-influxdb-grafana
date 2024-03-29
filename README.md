@@ -192,6 +192,9 @@ ampy --port /dev/ttyUSB0 ls
 
 Most probably, you should be seeing just a `boot.py` file.
 
+>Before you move the source code onto the ESP32, configure the Wi-Fi name and password
+>in the [configuration file](./microcontroller/config.json). Of course, you could also change the base MQTT topic.
+
 Therefore, let's move our source code onto the ESP32 by running:
 
 ```shell
