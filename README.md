@@ -66,7 +66,7 @@ or Windows OS.
 #### 1. Clone this repository to your local machine.
 
 ```shell
-git clone https://github.com/vasilogi/LocalWeather-Reader.git 
+git clone https://github.com/vasilogi/iot-dashboard-mqtt-telegraf-influxdb-grafana.git 
 ```
 
 #### 2. Navigate inside the directory, containing the repository and create a Python virtual environment.
